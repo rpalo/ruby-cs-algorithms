@@ -25,7 +25,7 @@ class UndirectedGraph
     @edges.delete Set.new([v1, v2])
   end
 
-  def connected?(v1, v2)
+  def adjacent?(v1, v2)
     @edges.include? Set.new([v1, v2])
   end
 
@@ -71,13 +71,13 @@ class UndirectedGraphTest < Minitest::Test
     @ug << 3
     @ug << 4
     @ug.connect 3, 4
-    assert @ug.connected?(3, 4)
+    assert @ug.adjacent?(3, 4)
   end
 
   def test_connected_returns_false_if_not_connected
     @ug << 3
     @ug << 4
-    refute @ug.connected?(3, 4)
+    refute @ug.adjacent?(3, 4)
   end
 
   def test_edges_on_returns_all_connections_to_vertex

@@ -16,7 +16,7 @@ class DirectedGraph < UndirectedGraph
     @edges.delete [v1, v2]
   end
 
-  def connected?(v1, v2)
+  def adjacent?(v1, v2)
     @edges.include? [v1, v2]
   end
 end
@@ -57,20 +57,20 @@ class DirectedGraphTest < Minitest::Test
     @dg << 3
     @dg << 4
     @dg.connect 3, 4
-    assert @dg.connected?(3, 4)
+    assert @dg.adjacent?(3, 4)
   end
 
   def test_connected_returns_false_if_not_connected
     @dg << 3
     @dg << 4
-    refute @dg.connected?(3, 4)
+    refute @dg.adjacent?(3, 4)
   end
 
   def test_connected_returns_false_if_nodes_are_backwards
     @dg << 3
     @dg << 4
     @dg.connect(3, 4)
-    refute @dg.connected?(4, 3)
+    refute @dg.adjacent?(4, 3)
   end
 
   def test_edges_on_returns_all_connections_to_vertex
