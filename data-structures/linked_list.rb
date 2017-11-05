@@ -50,6 +50,15 @@ class LinkedList
     @size -= 1
     deleted
   end
+
+  def include?(item)
+    current = @head
+    while current
+      return true if current.data == item
+      current = current.next
+    end
+    return false
+  end
 end
 
 # Test Case for Linked List
@@ -117,5 +126,21 @@ class LinkedListTest < Minitest::Test
     assert_raises EmptyListError do
       l.remove_front
     end
+  end
+
+  def test_include_finds_items_that_are_there
+    l = LinkedList.new
+    l.insert_front Node.new(1)
+    l.insert_front Node.new(2)
+    l.insert_front Node.new(3)
+    assert l.include?(2)
+  end
+
+  def test_include_doesnt_find_items_that_arent_there
+    l = LinkedList.new
+    l.insert_front Node.new(1)
+    l.insert_front Node.new(2)
+    l.insert_front Node.new(3)
+    refute l.include?(87)
   end
 end
