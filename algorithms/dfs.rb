@@ -37,7 +37,7 @@ def depth_first_search(graph, start_node, target)
 
 end
 
-class DfsTest < MiniTest::Test
+class DfsTest < Minitest::Test
 
   #     3
   #     |

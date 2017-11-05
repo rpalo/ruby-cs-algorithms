@@ -37,7 +37,7 @@ def breadth_first_search(graph, start_node, target)
 
 end
 
-class BfsTest < MiniTest::Test
+class BfsTest < Minitest::Test
 
   #     3
   #     |
