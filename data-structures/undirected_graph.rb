@@ -1,4 +1,5 @@
 require 'minitest/autorun'
+require 'set'
 
 # Implementation of Undirected Graph Data Structure
 class UndirectedGraph
