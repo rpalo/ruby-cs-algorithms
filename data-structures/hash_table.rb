@@ -19,6 +19,10 @@ class HashTable
     @slots.include?(value)
   end
 
+  def to_a
+    @slots.select { |item| not item.nil? }
+  end
+
 end
 
 class HashTableTest < Minitest::Test
