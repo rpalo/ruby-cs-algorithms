@@ -10,6 +10,8 @@ def bubble_sort(items, verbose = false)
       end
     end
     return items unless swapped  # Break out early if no changes
+
+    p items if verbose
   end
   return items
 end

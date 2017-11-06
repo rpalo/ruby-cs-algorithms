@@ -11,7 +11,7 @@ def selection_sort(items, verbose = false)
       end
     end
     items[i], items[smallest_index] = smallest_value, items[i]
-    puts "[#{items.join(', ')}]" if verbose
+    p items if verbose
   end
 
   items
