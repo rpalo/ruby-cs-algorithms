@@ -3,7 +3,7 @@ require_relative 'hash_table'
 
 # Implements a mathematical set
 # Made some changes to HashTable to use ruby's built-in hash method
-class Set < HashTable
+class MySet < HashTable
   def initialize(initial_size = 8)
     @size = initial_size
     hf = Proc.new { |item| item.hash % @size }
@@ -35,10 +35,10 @@ class Set < HashTable
     to_a.all? { |item| other.include?(item) }
   end
 
-  # --- Set methods
+  # --- MySet methods
   def intersect(other)
     items = to_a.select { |item| other.include?(item) && !item.nil? }
-    combined = Set.new
+    combined = MySet.new
     items.each { |i| combined.store(i) }
     combined
   end
@@ -46,7 +46,7 @@ class Set < HashTable
   alias_method :&, :intersect
 
   def union(other)
-    combined = Set.new
+    combined = MySet.new
     (to_a + other.to_a).each { |item| combined.store(item) }
     combined
   end
@@ -54,7 +54,7 @@ class Set < HashTable
   alias_method :|, :union
 
   def difference(other)
-    combined = Set.new
+    combined = MySet.new
     to_a.each { |item| combined.store(item) unless other.include?(item) }
     combined
   end
@@ -69,16 +69,16 @@ class Set < HashTable
 
 end
 
-class SetTest < Minitest::Test
+class MySetTest < Minitest::Test
   def setup
-    @a = Set.new
+    @a = MySet.new
     @a << 1 << 2 << 3
-    @b = Set.new
+    @b = MySet.new
     @b << 2 << 3 << 4
   end
 
-  def test_two_sets_that_are_the_same_are_equal
-    c = Set.new << 1 << 2 << 3
+  def test_two_Mysets_that_are_the_same_are_equal
+    c = MySet.new << 1 << 2 << 3
     assert_equal c, @a
   end
 
@@ -88,25 +88,25 @@ class SetTest < Minitest::Test
 
   def test_intersect
     result = @a & @b
-    expected = Set.new << 2 << 3
+    expected = MySet.new << 2 << 3
     assert_equal expected, result
   end
 
   def test_union
     result = @a | @b
-    expected = Set.new << 1 << 2 << 3 << 4
+    expected = MySet.new << 1 << 2 << 3 << 4
     assert_equal expected, result
   end
 
   def test_difference
     result = @a - @b
-    expected = Set.new << 1
+    expected = MySet.new << 1
     assert_equal expected, result
   end
 
   def test_symmetric_difference
     result = @a ^ @b
-    expected = Set.new << 1 << 4
+    expected = MySet.new << 1 << 4
     assert_equal expected, result
   end
 end
